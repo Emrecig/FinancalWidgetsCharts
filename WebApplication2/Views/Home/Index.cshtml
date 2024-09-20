@@ -1,0 +1,279 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="@Url.Content("~/CSS/styles.css")">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body class="light-mode">
+    <div class="top-panel">
+        <div class="panel-content">
+            <button id="panel-foto">
+                <img src="~/Image/logo-white.png" alt="panel img" />
+                </button>
+            <button id="theme-toggle">
+                <img src="@Url.Content("~/Image/Lua_Crescente_ícones_gratuitos_criados_por_Hartono-removebg-preview.png")" alt="Toggle Theme">
+            </button>
+        </div>
+    </div>
+
+    <header class="page-header">
+        <div class="carousel-container">
+            <div class="carousel-slide">
+                <div class="carousel-item">
+                    <div class="header-content">
+                        <img src="~/Image/original-5c5b79e5d911f4e54b66251d92c53ae0-removebg.png" alt="Başlık Fotoğrafı" class="header-image">
+                        <h1 class="header-title">Money Success</h1>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="header-content">
+                        <img src="~/Image/widgets-landing.jpg" alt="Başlık Fotoğrafı" class="header-image">
+                        <h1 class="header-title"> Ekonteknoloji</h1>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="header-content">
+                        <img src="~/Image/advanced-chart.jpg" alt="Başlık Fotoğrafı" class="header-image">
+                        <h1 class="header-title">Money Success</h1>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Kaydırma Butonları -->
+        </div>
+    </header>
+
+
+
+
+    <div class="container">
+        <!-- Mor Renkli Widget -->
+        <div class="col-xl-4 col-md-12 box-col-12">
+            <div class="card o-hidden purple-widget">
+                <div class="chart-widget-top">
+                    <div class="card-body pb-0">
+                        <div class="row">
+                            <div class="col-5">
+                                <h6 class="f-w-600 font-primary">EURO/TR</h6>
+                                <span class="num"><span class="counter" data-value="90">0</span>%<i class="icon-angle-up f-12 ms-1"></i></span>
+                            </div>
+                            <div class="col-7 text-end total-value-wrapper">
+                                <h4 class="num total-value">$ <span class="counter" data-value="3654">0</span><span class="cents">.00</span></h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <div id="chart-widget1">
+                            <!-- ApexCharts Canvas Burada -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+            <!-- Sarı Renkli Widget -->
+                <div class="col-xl-4 col-md-12 box-col-12">
+                    <div class="card o-hidden yellow-widget">
+                        <div class="chart-widget-top">
+                            <div class="card-body pb-0">
+                                <div class="row">
+                                    <div class="col-5">
+                                <h6 class="f-w-600 font-primary">NASDAQ</h6>
+                                <span class="num"><span class="counter" data-value="75">0</span>%<i class="icon-angle-up f-12 ms-1"></i></span>
+                            </div>
+                            <div class="col-7 text-end total-value-wrapper">
+                                <h4 class="num total-value">$ <span class="counter" data-value="5500">0</span><span class="cents">.00</span></h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <div id="chart-widget2">
+                            <!-- ApexCharts Canvas Burada -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+            <!-- Yeşil Renkli Widget -->
+            <div class="col-xl-4 col-md-12 box-col-12">
+                <div class="card o-hidden green-widget">
+                    <div class="chart-widget-top">
+                        <div class="card-body pb-0">
+                            <div class="row">
+                                <div class="col-5">
+                                <h6 class="f-w-600 font-primary">DAX</h6>
+                                <span class="num"><span class="counter" data-value="55">0</span>%<i class="icon-angle-up f-12 ms-1"></i></span>
+                            </div>
+                            <div class="col-7 text-end total-value-wrapper">
+                                <h4 class="num total-value">$ <span class="counter" data-value="2500">0</span><span class="cents">.00</span></h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <div id="chart-widget3">
+                            <!-- ApexCharts Canvas Burada -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+            <!-- siyah Renkli Widget -->
+            <div class="col-xl-4 col-md-12 box-col-12">
+                <div class="card o-hidden red-widget">
+                    <div class="chart-widget-top">
+                        <div class="card-body pb-0">
+                            <div class="row">
+                                <div class="col-5">
+                                <h6 class="f-w-600 font-primary">BTC</h6>
+                                <span class="num"><span class="counter" data-value="25">0</span>%<i class="icon-angle-up f-12 ms-1"></i></span>
+                            </div>
+                            <div class="col-7 text-end total-value-wrapper">
+                                <h4 class="num total-value">$ <span class="counter" data-value="7500">0</span><span class="cents">.00</span></h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <div id="chart-widget4">
+                            <!-- ApexCharts Canvas Burada -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Yeni Boş Kart -->
+            <div class="col-xl-12 col-md-12 box-col-12">
+                <div class="card o-hidden empty-widget">
+                    <div class="card-body">
+                        <!-- İçerik sonradan eklenebilir -->
+                    <div class="col-7">
+                        <h6 class="f-w-600 font-primary">Browser Uses</h6>
+                        <div class="chart-container">
+                            <div id="chart-widget5"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+                            <!-- Candlestick Chart Burada Görünecek -->
+
+
+        <!-- Yeni Boş Kart -->
+            <div class="col-xl-12 col-md-12 box-col-12">
+                <div class="card o-hidden candle-widget">
+                    <div class="card-body">
+                        <!-- İçerik sonradan eklenebilir -->
+                    <div class="col-7">
+                        <h6 class="f-w-600 font-primary">Browser Usesrs</h6>
+                        <div class="chart-container">
+                            <div id="chart-widget6"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-12 col-md-12 box-col-12">
+            <div class="card o-hidden bubble-widget">
+                <div class="card-body">
+                    <!-- İçerik sonradan eklenebilir -->
+                    <div class="col-7">
+                        <h6 class="f-w-600 font-primary">bubble chart</h6>
+                        <div class="chart-container">
+                            <div id="chart-widget7"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-12 col-md-12 box-col-12">
+            <div class="card o-hidden bubble1-widget">
+                <div class="card-body">
+                    <!-- İçerik sonradan eklenebilir -->
+                    <div class="col-7">
+                        <h6 class="f-w-600 font-primary">bubble1 chart</h6>
+                        <div class="chart-container">
+                            <div id="chart-widget8"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="chart-tooltip" class="chart-tooltip">
+        <div class="tooltip-date"></div>
+        <div class="tooltip-value"></div>
+    </div>
+
+
+
+
+    <footer class="footer">
+        <div class="contain">
+            <div class="footer-columns">
+                <!-- Contact Us Section -->
+                <div class="footer-column">
+                    <h3>Bizimle iletişim</h3>
+                    <ul>
+                        <li><i class="fa fa-map-marker"></i> Lokasyon</li>
+                        <li><i class="fa fa-phone"></i> Tel +2534567890</li>
+                        <li><i class="fa fa-envelope" ></i> emre_cig4@hotmail.com</li>
+                        <li>Readable content of a page when looking at its layout.</li>
+                    </ul>
+                </div>
+                <!-- Useful Links Section -->
+                <div class="footer-column">
+                    <h3>Faydalı Bağlantı</h3>
+                    <ul>
+                        <li>Bir sayfanın düzenine bakıldığında okunabilen içerik.</li>
+                    </ul>
+                </div>
+                <!-- Offices Section -->
+                <div class="footer-column">
+                    <h3>Ekibimiz</h3>
+                    <ul>
+                        <li>Şirketin ekip üyeleri</li>
+                    </ul>
+                </div>
+                <!-- Newsletter Section -->
+                <div class="footer-column">
+                    <h3>Kayıt</h3>
+                    <form>
+                        <input type="email" placeholder="Mailinizi giriniz">
+                        <button>Kayıt</button>
+                    </form>
+                </div>
+                <div class="copyright">
+                    <div class="contain">
+                        <p>© 2024, Ekon Yazılım ve Teknoloji A.Ş Widget projesi <a href="https://github.com/Emrecig">Stajyer Emre</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script src="@Url.Content("~/JS/widgets.js")"></script>
+</body>
+</html>

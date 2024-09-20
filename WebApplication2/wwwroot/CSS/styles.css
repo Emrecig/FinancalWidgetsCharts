@@ -1,0 +1,794 @@
+﻿/* Varsayılan Tema */
+body {
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    padding-top: 50px; /* Panelin üstünü boş bırak */
+}
+
+
+
+/* Üst Panel (Gece/Gündüz Tema Toggle için) */
+.top-panel {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Arka plan rengi */
+    padding: 0;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1); /* Gölge efekti */
+    position: fixed; /* Üstte sabit */
+    top: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between; /* İçerikleri yatayda ayır */
+    align-items: center;
+
+}
+
+.panel-content {
+    display: flex;
+    align-items: center;
+}
+
+#panel-foto {
+    border: none;
+    background: none;
+    padding: 0;
+    right: 0;
+    top: 0;
+}
+    #panel-foto img {
+        display: flex;
+        width: 215px; /* Görsel genişliği */
+        height: 85px;
+    }
+
+/* Genel başlık stili */
+.page-header {
+    text-align: center;
+    padding: 100px;
+    background-color: transparent;
+}
+
+.header-content {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-image {
+    width: 600px;
+    height: auto    ;
+}
+
+.header-title {
+    font-size: 36px;
+    font-family: 'Poppins', sans-serif;
+    margin-top: 50px;
+    color: #6362e7;
+}
+
+/* Carousel container stili */
+.carousel-container {
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 10px;
+    margin-top: 30px;
+}
+
+/* Carousel içindeki fotoğraf stili */
+.carousel-slide {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel-item {
+    min-width: 100%;
+    transition: transform 0.5s ease;
+}
+
+    .carousel-item img {
+        width: 850px;
+        height: 500px;
+        display: flex;
+    }
+
+
+
+#theme-toggle {
+    border: none;
+    background: none;
+    padding: 5px;
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+    #theme-toggle img {
+        background-color: transparent;
+        display: flex;
+        width: 58px; /* Görsel genişliği */
+        height: 55px;
+
+    }
+
+/* Gündüz Modu */
+.light-mode {
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+    .light-mode .card {
+        background-color: #ffffff;
+        border: 1px solid #ddd;
+        transition: background-color 0.5s ease-in-out, transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
+    }
+        .light-mode .card:hover {
+            background-color: #ffffff; /* Daha koyu bir hover rengi */
+            transform: scale(1.02);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5); /* Hover anında gölge efekti */
+        }
+
+    .light-mode .card-title {
+        color: #333;
+    }
+
+    .light-mode .card-value {
+        color: #000;
+    }
+
+    .light-mode .chart {
+        background-color: #ffffff;
+    }
+    .light-mode .footer {
+        color: #8685fc;
+    }
+
+
+
+/* Gece Modu */
+.dark-mode {
+    background-color: #1e1e1e;
+    color: #ffffff;
+}
+
+    .dark-mode .card {
+        background-color: #2c2c2c;
+        border: 1px solid #444;
+        transition: background-color 0.5s ease-in-out, transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
+    }
+
+.dark-mode .card:hover {
+    background-color: #333; /* Daha koyu bir hover rengi */
+    transform: scale(1.02);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5); /* Hover anında gölge efekti */
+}
+
+    .dark-mode .card-title {
+        color: #ffffff;
+    }
+
+    .dark-mode .card-value, .dark-mode .num, .dark-mode .counter {
+        color: #ffffff;
+    }
+
+    .dark-mode .chart {
+        background-color: #2c2c2c;
+    }
+    .dark-mode .chart-tooltip {
+        background-color: #333; /* Gece modunda arka plan rengi */
+        color: #fff; /* Gece modunda metin rengi */
+    }
+
+    .dark-mode .tooltip-date,
+    .dark-mode .tooltip-value {
+        color: #fff; /* Gece modunda metin rengi */
+    }
+    .dark-mode .footer {
+        color: #8685fc;
+    }
+
+
+
+
+
+/* Kartların dış görünümü */
+.card {
+    background-color: #ffffff; /* Kart arka planı */
+    border: none; /* Kenar sınırı kaldırıldı */
+    border-radius: 15px; /* Köşeler yuvarlatıldı */
+    padding: 0;
+    margin: 10px; /* Kartlar arasında küçük boşluk */
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1); /* Hafif gölge */
+    width: 325px;
+    height: 280px;
+    position: relative;
+    overflow: hidden;
+    z-index: 0;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+    .card.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+
+    .card.purple-widget:hover {
+        border-left: 6px solid #6362e7;
+        transform: scale(1.05);
+        transition: background-color 1.5s ease-in-out, transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
+    }
+
+    .card.yellow-widget:hover {
+        border-left: 6px solid #FFBC00;
+        transform: scale(1.05);
+        transition: background-color 1.5s ease-in-out, transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
+    }
+
+
+    .card.green-widget:hover {
+        transform: scale(1.05);
+        border-left: 6px solid #54C100;
+        transition: background-color 1.5s ease-in-out, transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
+    }
+
+    .card.red-widget:hover {
+        transform: scale(1.05);
+        border-left: 6px solid #940000;
+        transition: background-color 1.0s ease-in-out, transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
+    }
+    .card.empty-widget:hover {
+        border-left: 6px solid #6362e7;
+        transition: background-color 1.0s ease-in-out, transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
+    }
+    .card.candle-widget:hover {
+
+        border-left: 6px solid #6362e7;
+        transition: background-color 1.0s ease-in-out, transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
+    }
+    .card.bubble-widget:hover {
+        border-left: 6px solid #6362e7;
+        transition: background-color 1.0s ease-in-out, transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
+    }
+    .card .bubble1-widget:hover {
+        border-left: 6px solid #6362e7;
+        transition: background-color 1.0s ease-in-out, transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
+    }
+
+
+
+
+/* Hover efekti */
+.card:hover {
+    transform: scale(1.10); /* Hafif büyüme efekti */
+}
+/* İçerik düzeni */
+.card-content {
+    padding: 20px;
+}
+
+/* Kartın üst kısmındaki başlık ve sayı alanı */
+.chart-widget-top .card-body .row .col-5 {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Sol hizalama */
+    padding: 10px; /* Üst köşeye boşluk bırakma */
+}
+
+h6.f-w-600.font-primary {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600; /* Kalın yazı stili */
+    font-size: 1.5rem; /* SALE yazısı boyutu */
+    margin: 0; /* Boşlukları sıfırlıyoruz */
+    padding-bottom: 1px; /* ALT kısma hafif boşluk */
+}
+
+.purple-widget h6 {
+
+    color: #6362e7;
+}
+
+.yellow-widget h6 {
+    color: #FFBC00;
+}
+
+.green-widget h6 {
+    color: #54C100;
+}
+
+.red-widget {
+    color: #940000;
+}
+
+
+
+
+.num {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem; /* 90% yazısı boyutu daha küçük */
+    color: #333;
+    margin: 0; /* Boşlukları sıfırlıyoruz */
+}
+
+/* Sağ üst köşedeki toplam değerin konumlandırılması */
+.total-value-wrapper {
+    position: absolute;
+    top: 10px; /* Kartın üst kısmından 10px boşluk bırakıyoruz */
+    right: 10px; /* Sağdan 10px boşluk bırakıyoruz */
+    text-align: right; /* Yazıları sağa hizalıyoruz */
+}
+
+/* Toplam değerin boyutunu aynı tutmak için h4 stili */
+.total-value {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.5rem; /* Numaranın yazı boyutu */
+    color: #333;
+    margin: 0;
+    font-weight: 600; /* Daha belirgin ve kalın yazı */
+}
+
+
+/* Grafik stilini tamamen kartın içine yerleştiriyoruz */
+#chart-widget1, #chart-widget2, #chart-widget3, #chart-widget4 {
+    width: 110%;
+
+    height: 100px;
+    transform: translate(-3%, -45%); /* İçeriği merkeze kaydırır, gerektiğinde ayarlayın */
+
+}
+
+
+.apexcharts-area {
+    fill-opacity: 0.7; /* Opaklığı artırıyoruz */
+    stroke-opacity: 1; /* Çizgi opaklığını artırıyoruz */
+    stroke-width: 3; /* Çizgi kalınlığı ayarı */
+}
+
+/* Kartın içindeki grafiği tam olarak yerleştiriyoruz */
+.chart-container {
+    position: absolute;
+    bottom: 0;
+    left: -11px;
+    right: 0;
+    top: 193px;
+    width: 100%;
+    height: 100%; /* Grafik alanı için %60'lık bir alan ayırıyoruz */
+    padding: 0;
+    margin: 0;
+}
+
+/* Container stil ayarları */
+.container {
+    display: inline-flex; /* Flexbox kullanımı */
+    flex-wrap: wrap; /* Satıra sığmayan kartlar bir alt satıra geçer */
+    justify-content: space-between;
+    margin-top: 20px;
+    margin: 10px; /* Sol ve sağ boşlukları sıfırla */
+    padding: 0; /* Varsayılan padding'i sıfırla */
+    gap: 15px;
+    align-items: center; /* Kartların yüksekliğini hizala */
+}
+
+
+/* Sayı animasyonu için gerekli stil */
+.counter {
+    display: inline-block;
+    font-size: 1.5rem;
+    color: #333;
+}
+
+
+/* Boş kartın görünümü */
+.empty-widget {
+    background-color: #eaeaea; /* Boş kart için farklı bir arka plan rengi */
+    border-left: 5px solid #999;
+    border-radius: 20px;
+    padding: 0;
+    margin: 0;
+    left: 10px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+    top: 15px;
+    height: 600px;
+    width: 715px;
+    overflow: hidden; /* Taşan içerikleri gizle */
+}
+.candle-widget {
+    background-color: #eaeaea; /* Boş kart için farklı bir arka plan rengi */
+    border-left: 5px solid #999;
+    border-radius: 20px;
+    padding: 0;
+    margin: 0;
+    right: 0px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+    top: 15px;
+    height: 600px;
+    width: 715px;
+    overflow: hidden; /* Taşan içerikleri gizle */
+}
+
+.bubble-widget {
+    background-color: #eaeaea; /* Boş kart için farklı bir arka plan rengi */
+    border-left: 5px solid #999;
+    border-radius: 20px;
+    padding: 0;
+    margin: 0;
+    left: 10px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+    top: 40px;
+    height: 450px;
+    width: 715px;
+    overflow: hidden; /* Taşan içerikleri gizle */
+}
+
+.bubble1-widget {
+    background-color: #eaeaea; /* Boş kart için farklı bir arka plan rengi */
+    border-left: 5px solid #999;
+    border-radius: 20px;
+    padding: 0;
+    margin: 0;
+    right: 0px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+    top: 40px;
+    height: 450px;
+    width: 715px;
+    overflow: hidden; /* Taşan içerikleri gizle */
+}
+
+/* Diğer kartlar gibi hover efekti */
+.candle-widget:hover {
+    transform: scale(1.05);
+    background-color: #f0f0f0;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    transition: background-color 0.5s ease-in-out, transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
+}
+
+/* Diğer kartlar gibi hover efekti */
+.empty-widget:hover {
+    transform: scale(1.05);
+    background-color: #f0f0f0;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    transition: background-color 0.5s ease-in-out, transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
+}
+
+.bubble-widget:hover {
+    transform: scale(1.05);
+    background-color: #f0f0f0;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    transition: background-color 0.5s ease-in-out, transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
+}
+
+.bubble1-widget:hover {
+    transform: scale(1.05);
+    background-color: #f0f0f0;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    transition: background-color 0.5s ease-in-out, transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
+}
+
+    /* Yeni Boş Widget için Grafik */
+.empty-widget .chart-container {
+    position: absolute;
+    bottom: 0;
+    padding: 0;
+    left: 0;
+    right: 0;
+    top: 30px; /* Başlık ile grafik arasındaki boşluk */
+    width: 95%;
+    height: calc(100% - 40px); /* Kartın yüksekliğinden başlık yüksekliğini çıkararak kalan alanı kapla */
+}
+
+.candle-widget .chart-container {
+    position: absolute;
+    bottom: 0;
+    padding: 0;
+    left: 0;
+    right: 0;
+    top: 30px; /* Başlık ile grafik arasındaki boşluk */
+    width: 95%;
+    height: calc(100% - 40px); /* Kartın yüksekliğinden başlık yüksekliğini çıkararak kalan alanı kapla */
+}
+
+.bubble-widget .chart-container {
+    position: absolute;
+    bottom: 0;
+    padding: 0;
+    left: 0;
+    right: 0;
+    top: 30px; /* Başlık ile grafik arasındaki boşluk */
+    width: 95%;
+    height: calc(100% - 40px); /* Kartın yüksekliğinden başlık yüksekliğini çıkararak kalan alanı kapla */
+}
+
+.bubble1-widget .chart-container {
+    position: absolute;
+    bottom: 0;
+    padding: 0;
+    left: 0;
+    right: 0;
+    top: 30px; /* Başlık ile grafik arasındaki boşluk */
+    width: 95%;
+    height: calc(100% - 40px); /* Kartın yüksekliğinden başlık yüksekliğini çıkararak kalan alanı kapla */
+}
+
+/* ApexCharts grafik alanı */
+#chart-widget5, #chart-widget6, #chart-widget7, #chart-widget8{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    left: 0; /* Soldan tam hizalanmasını sağlar */
+    top: 0; /* Üstten tam hizalanmasını sağlar */
+
+}
+
+/* Browser Uses yazısını sağa kaydırma */
+.empty-widget .col-7 h6 {
+    margin-left: 270px; /* Yazıyı sağa kaydırmak için sol tarafta boşluk bırakıyoruz */
+    font-size: 1.5rem; /* Yazı boyutu */
+    color: #6362e7; /* Yazı rengi */
+    font-weight: 600;
+}
+.candle-widget .col-7 h6 {
+    margin-left: 270px; /* Yazıyı sağa kaydırmak için sol tarafta boşluk bırakıyoruz */
+    font-size: 1.5rem; /* Yazı boyutu */
+    color: #6362e7; /* Yazı rengi */
+    font-weight: 600;
+}
+
+.bubble-widget .col-7 h6 {
+    margin-left: 270px; /* Yazıyı sağa kaydırmak için sol tarafta boşluk bırakıyoruz */
+    font-size: 1.5rem; /* Yazı boyutu */
+    color: #6362e7; /* Yazı rengi */
+    font-weight: 600;
+}
+
+.bubble1-widget .col-7 h6 {
+    margin-left: 270px; /* Yazıyı sağa kaydırmak için sol tarafta boşluk bırakıyoruz */
+    font-size: 1.5rem; /* Yazı boyutu */
+    color: #6362e7; /* Yazı rengi */
+    font-weight: 600;
+}
+
+/* Tooltip */
+.chart-tooltip {
+    position: absolute;
+    background: #1e1e1e;
+    color: #fff;
+    border: 1px solid #444;
+    border-radius: 4px;
+    padding: 10px;
+    display: none; /* Başlangıçta gizli */
+    font-size: 14px;
+    z-index: 1000;
+    pointer-events: none; /* Tooltip'in tıklanabilir olmasını engeller */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Koyu bir gölge efekti ekleyin */
+}
+
+
+.tooltip-date {
+    font-weight: bold;
+}
+
+.tooltip-value {
+    color: #9C27B0; /* Grafikte kullanılan renk */
+    margin-top: 5px;
+}
+
+
+
+/* Footer Styles */
+.footer {
+    background-color: transparent;
+    padding-top: 90px;
+    color: #8685fc;
+    font-family: Arial, sans-serif;
+}
+
+.contain {
+    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.footer-columns {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px;
+    flex-wrap: wrap;
+}
+
+.footer-column {
+    flex: 1;
+    min-width: 250px;
+    border-left: #8685fc solid 8px;
+    border-right  : #8685fc solid 9px;
+
+    padding: 20px;
+}
+    .footer-column h3 {
+        font-size: 20px;
+        margin-bottom: 20px;
+        text-transform: uppercase;
+        color: #8685fc;
+    }
+
+    .footer-column ul {
+        list-style: none;
+        padding: 0;
+    }
+
+        .footer-column ul li {
+            margin-bottom: 15px;
+            color: #8685fc;
+            font-size: 16px;
+            line-height: 24px;
+        }
+
+            .footer-column ul li i {
+                margin-right: 10px;
+                color: #8685fc;
+            }
+
+    .footer-column form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .footer-column input {
+        padding: 15px;
+        margin-bottom: 15px;
+        border: 1px solid #face34;
+        background-color: transparent;
+        color: white;
+        font-size: 20px;
+    }
+
+    .footer-column button {
+        padding: 15px;
+        background-color: #face34;
+        color: #0a0f28;
+        border: none;
+        cursor: pointer;
+        text-transform: uppercase;
+        font-weight: bold;
+        font-size: 25px;
+    }
+
+.logo_bottom {
+    font-weight: bold;
+    font-size: 51px;
+    color: #fff !important;
+    line-height: 55px;
+    margin-bottom: 40px;
+    text-align: center;
+    display: block;
+}
+
+.footer-column button:hover {
+    background-color: #8685fc;
+}
+
+.Informa h3 {
+    color: #8685fc;
+    font-size: 25px;
+    font-weight: bold;
+    line-height: 21px;
+    margin-bottom: 20px;
+    margin-top: 26px;
+    text-transform: uppercase;
+}
+
+.conta ul li {
+    list-style: none;
+    margin-bottom: 15px;
+    color: #8685fc;
+}
+
+    .conta ul li i {
+        padding-right: 5px;
+    }
+
+    .conta ul li a {
+        color: #8685fc;
+        text-decoration: none;
+    }
+
+.Informa li {
+    font-size: 17px;
+    line-height: 29px;
+    color: #8685fc;
+}
+
+    .Informa li a:hover {
+        color: #8685fc;
+    }
+
+.newslatter_form {
+    margin-top: 21px;
+    display: block;
+}
+
+.ente {
+    background: transparent;
+    color: #8685fc;
+    border: inherit;
+    padding: 0 18px;
+    height: 51px;
+    width: 100%;
+    font-size: 17px;
+    font-weight: 500;
+    border: #8685fc solid 2px;
+    margin-bottom: 20px;
+}
+
+.subs_btn {
+    max-width: 191px;
+    display: inline-block;
+    background: transparent;
+    height: 51px;
+    width: 100%;
+    color: #8685fc;
+    font-size: 17px;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: ease-in all 0.5s;
+    border: #8685fc solid 2px;
+}
+
+    .subs_btn:hover {
+        background: #8685fc;
+        transition: ease-in all 0.5s;
+        border: #8685fc solid 2px;
+    }
+
+.copyright {
+    width: 900px;
+    margin-top: 110px;
+
+    text-align: center;
+}
+
+    .copyright p {
+        color: #8685fc;
+        margin-left: 85px;
+        padding: 10px 0px;
+        width: 1000px;
+        margin-top: 0px;
+        border-top: #8685fc solid 2px;
+    }
+
+    .copyright a {
+        color: #8685fc;
+    }
+
+        .copyright a:hover {
+            color: #8685fc;
+        }
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .footer-columns {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer-column {
+        margin-bottom: 30px;
+        text-align: center;
+    }
+}
+    
