@@ -7,25 +7,25 @@ This application integrates various financial charts into a responsive dashboard
 The project adheres to a layered architecture, with each layer handling distinct responsibilities, promoting maintainability and scalability.
 
 ## ✨ Features
--Interactive Charts: Line charts, bubble charts, and pie charts for financial data visualization 
+- Interactive Charts: Line charts, bubble charts, and pie charts for financial data visualization 
 
--Real-time Data Updates: Get live data updates, ensuring your charts are always up-to-date 
+- Real-time Data Updates: Get live data updates, ensuring your charts are always up-to-date 
 
--Responsive Design: Optimized for both desktop and mobile viewing 
+- Responsive Design: Optimized for both desktop and mobile viewing 
 
--Layered Architecture: Clear separation of concerns, enhancing maintainability and scalability 
+- Layered Architecture: Clear separation of concerns, enhancing maintainability and scalability 
 
--Customizable Widgets: Modify and tailor widgets to your needs 
+- Customizable Widgets: Modify and tailor widgets to your needs 
 
 ## ⚙️ Technologies Used 💻
--ASP.NET Core (.NET 7+)
+- ASP.NET Core (.NET 7+)
 
--C#
+- C#
 
--HTML, CSS, JavaScript
+- HTML, CSS, JavaScript
 
--ApexCharts.js (for interactive charting)
+- ApexCharts.js (for interactive charting)
 
--Visual Studio
+- Visual Studio
 
--Entity Framework Core (if applicable for data handling)
+- Entity Framework Core (if applicable for data handling)
